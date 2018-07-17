@@ -1,0 +1,51 @@
+
+<html>
+    <head>
+        <style>
+        #eyes {
+            width: 100%;
+            margin-top: -15%;
+        }
+        .slowLoader{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+        }
+        .container{
+            display: inline-block;
+            position: relative;
+            width: 100%;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img id="eyes" src="https://upload.wikimedia.org/wikipedia/commons/1/12/Emojione_1F440.svg" />
+            <div class="slowLoader"></div>
+        </div>
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+        <script>
+            $(function(){
+                var slowLoadHandler = setInterval(function(){
+                    var currentHeight = parseInt($(".slowLoader").css("height"));
+                    if(currentHeight <= 0){
+                        clearInterval(slowLoadHandler);
+                        return;
+                    }
+                    var changeHeight = getRandomArbitary(5,100);
+                    currentHeight = currentHeight - changeHeight;
+                    $(".slowLoader").css("height", currentHeight);
+                }, 500);
+            });
+            function getRandomArbitary (min, max) {
+                return Math.floor(Math.random() * (max - min) + min);
+            }
+        </script>
+    </body>
+</html>
